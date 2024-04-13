@@ -19,12 +19,9 @@ const GuardianNews = () => {
               <p>published: {convertDate(result.webPublicationDate)}</p>
               <a href={result.webUrl} target="_blank" className="text-blue-500" rel="noreferrer">{`Details >>`}</a>
             </div>
-
           </div>
         );
       });
-    } else {
-      return <p>No news available.</p>;
     }
   };
   return (

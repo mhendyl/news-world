@@ -9,26 +9,30 @@ import { convertDate } from "../../utils";
 import { guardianThunk } from "../../rtk/guardian/thunk";
 import { AppDispatch } from "../../rtk/store";
 import GuardianNews from "../../components/news/guardian";
+import { newsThunk } from "../../rtk/news/thunk";
+import NewsApi from "../../components/news/newsApi";
+import { resetGuardian } from "../../rtk/guardian";
+import { resetNews } from "../../rtk/news";
 
 const SearchScreen = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [source, setSource] = useState('All');
+  const [source, setSource] = useState('Guardian');
   const [search, setSearch] = useState<string>('');
   const [date, setDate] = useState<string | null>(convertDate(new Date()));
-  // console.log('>>> source', source);
-
-  // const onChangeSearch = (value: string): void => {
-  //   console.log('>>> aluew', value);
-  // };
 
   const searchArticle = () => {
+    dispatch(resetGuardian());
+    dispatch(resetNews());
+    const params = {
+      query: search,
+      date: date,
+    }
     switch (source) {
       case 'Guardian':
-        const params = {
-          query: search,
-          date: date,
-        }
         dispatch(guardianThunk(params))
+        break;
+      case 'News API':
+        dispatch(newsThunk(params))
         break;
 
       default:
@@ -47,6 +51,7 @@ const SearchScreen = () => {
         <button className="px-4 py-2 border border-black rounded-md" onClick={searchArticle}>Search</button>
       </div>
       <GuardianNews />
+      <NewsApi />
     </div>
   )
 }

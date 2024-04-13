@@ -7,7 +7,7 @@ const NewsApi = () => {
     (state: AppRootState) => state.newsReducer,
   );
 
-  const dataResults = article?.response;
+  const dataResults = article?.articles;
 
   const renderNews = () => {
     if (dataResults && dataResults.length > 0) {
@@ -15,16 +15,14 @@ const NewsApi = () => {
         return (
           <div className="w-4/12 inline-grid">
             <div className="border border-black rounded-md my-4 p-5 mx-5 h-auto">
-              {/* <p className="bg-blue" key={index}>{result.webTitle}</p>
-              <p>published: {convertDate(result.webPublicationDate)}</p>
-              <a href={result.webUrl} target="_blank" className="text-blue-500" rel="noreferrer">{`Details >>`}</a> */}
+              <p className="bg-blue" key={index}>{result.title}</p>
+              <p>published: {convertDate(result.publishedAt)}</p>
+              <a href={result.url} target="_blank" className="text-blue-500" rel="noreferrer">{`Details >>`}</a>
             </div>
 
           </div>
         );
       });
-    } else {
-      return <p>No news available.</p>;
     }
   };
   return (

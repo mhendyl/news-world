@@ -5,7 +5,11 @@ import { guardianThunk } from './thunk';
 export const GuardianSlice = createSlice({
   name: 'guardian',
   initialState: GuardianInitialState,
-  reducers: {},
+  reducers: {
+    resetGuardian: (state) => {
+      state.article = null;
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(guardianThunk.fulfilled, (state, action) => {
@@ -23,5 +27,5 @@ export const GuardianSlice = createSlice({
   },
 });
 
-// export const {setMatrix} = weatherSlice.actions;
+export const {resetGuardian} = GuardianSlice.actions;
 export const GuardianReducer = GuardianSlice.reducer;

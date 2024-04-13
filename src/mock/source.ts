@@ -1,9 +1,6 @@
 
 export const dataSource = [
   {
-    value: 'All',
-  },
-  {
     value: 'Guardian',
   },
   {

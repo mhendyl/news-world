@@ -15,7 +15,8 @@ export interface ArticleInterfacePayload{
 }
 
 export interface ArticleNewsResulstsResponse {
-  response: ArticleInterfacePayload[];
+  articles: ArticleInterfacePayload[];
+  status: string;
 }
 
 export interface NewsInitialInterface {

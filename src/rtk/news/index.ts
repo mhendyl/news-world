@@ -5,7 +5,11 @@ import { newsThunk } from './thunk';
 export const NewsSlice = createSlice({
   name: 'news',
   initialState: NewsInitialState,
-  reducers: {},
+  reducers: {
+    resetNews: (state) => {
+      state.article = null;
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(newsThunk.fulfilled, (state, action) => {
@@ -23,5 +27,5 @@ export const NewsSlice = createSlice({
   },
 });
 
-// export const {setMatrix} = weatherSlice.actions;
+export const {resetNews} = NewsSlice.actions;
 export const NewsReducer = NewsSlice.reducer;

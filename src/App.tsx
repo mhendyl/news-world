@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { HeaderNews } from './components/header';
+import { useSelector } from 'react-redux';
+import { AppRootState } from './rtk/store';
+import SearchScreen from './screens/search';
+import SettingScreen from './screens/settings';
 
 function App() {
+  const { tab } = useSelector(
+    (state: AppRootState) => state.tabReducer,
+  );
+
+  const renderActiveScreen = () => {
+    switch (tab) {
+      case 'feed':
+        return <p>Set your preference</p>
+      case 'search':
+        return  <SearchScreen />
+      case 'settings':
+        return <SettingScreen />
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HeaderNews />
+      {renderActiveScreen()}
     </div>
   );
 }

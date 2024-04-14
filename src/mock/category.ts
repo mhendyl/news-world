@@ -1,11 +1,59 @@
 export const dataCategory = [
   {
-    value: 'somewhere',
+    value: 'day_of_week',
   },
   {
-    value: 'ja',
+    value: 'document_type',
   },
   {
-    value: 'vbaka',
+    value: 'ingredients',
+  },
+  {
+    value: 'news_desk',
+  },
+  {
+    value: 'pub_month',
+  },
+  {
+    value: 'pub_year',
+  },
+  {
+    value: 'section_name',
+  },
+  {
+    value: 'source',
+  },
+  {
+    value: 'subsection_name',
+  },
+  {
+    value: 'type_of_material',
+  },
+]
+
+export const newsApiCategory = [
+  {
+    value: 'business',
+  },
+  {
+    value: 'entertainment',
+  },
+  {
+    value: 'general',
+  },
+  {
+    value: 'health',
+  },
+  {
+    value: 'science',
+  },
+  {
+    value: 'sports',
+  },
+  {
+    value: 'technology',
+  },
+  {
+    value: 'all categories',
   },
 ]

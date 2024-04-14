@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { NewsInitialState } from './models';
-import { newsThunk } from './thunk';
+import { newsGetAuthorThunk, newsGetFeedThunk, newsThunk } from './thunk';
 
 export const NewsSlice = createSlice({
   name: 'news',
@@ -8,6 +8,8 @@ export const NewsSlice = createSlice({
   reducers: {
     resetNews: (state) => {
       state.article = null;
+      state.getAuthor = null;
+      state.feed = null
     }
   },
   extraReducers: builder => {
@@ -22,6 +24,30 @@ export const NewsSlice = createSlice({
       .addCase(newsThunk.rejected, state => {
         state.isLoading = false;
         state.article = null;
+        // state.error = state.error;
+      })
+      .addCase(newsGetAuthorThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.getAuthor = action.payload;
+      })
+      .addCase(newsGetAuthorThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(newsGetAuthorThunk.rejected, state => {
+        state.isLoading = false;
+        state.getAuthor = null;
+        // state.error = state.error;
+      })
+      .addCase(newsGetFeedThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.feed = action.payload;
+      })
+      .addCase(newsGetFeedThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(newsGetFeedThunk.rejected, state => {
+        state.isLoading = false;
+        state.feed = null;
         // state.error = state.error;
       });
   },

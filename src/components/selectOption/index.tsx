@@ -1,20 +1,33 @@
 type SelectOptionType = {
   label: string;
-  option: any[];
+  option: any[] | any;
+  type?: 'newsAPIAuthor' | 'Guardian' | 'NewYork';
   onSelect: (value: any) => void;
+  className?: string;
+  selected?: string;
 }
 
 const SelectOption = ({
   label,
   option,
-  onSelect
+  type,
+  onSelect,
+  className,
+  selected
 }: SelectOptionType) => {
-
+  const renderOption = () => {
+    switch (type) {
+      case 'newsAPIAuthor':
+        return option.map((value: any, index: number) => value.author && (<option key={index} value={value?.author}>{value?.author}</option>))
+      default:
+        return option.map((value: any, index: number) => <option key={index} value={value?.value}>{value?.value}</option>)
+    }
+  }
   return (
-    <div>
+    <div className={className}>
       <p>{label}</p>
-      <select className="border border-black px-2 rounded-sm" onChange={(e) => {onSelect(e.target.value)}}>
-        {option.map((option, index) => <option key={index} value={option?.value}>{option?.value}</option>)}
+      <select value={selected} className="border border-black px-2 rounded-sm" onChange={(e) => { onSelect(e.target.value) }}>
+        {option && (renderOption())}
       </select>
     </div>
   )

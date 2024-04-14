@@ -7,6 +7,6 @@ export const dataSource = [
     value: 'News API',
   },
   {
-    value: 'Other',
+    value: 'New York News',
   },
 ]

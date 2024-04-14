@@ -13,6 +13,9 @@ import { newsThunk } from "../../rtk/news/thunk";
 import NewsApi from "../../components/news/newsApi";
 import { resetGuardian } from "../../rtk/guardian";
 import { resetNews } from "../../rtk/news";
+import { newYorkThunk } from "../../rtk/newyork/thunk";
+import NewYorkNews from "../../components/news/newYork";
+import { resetNewYork } from "../../rtk/newyork";
 
 const SearchScreen = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -23,6 +26,7 @@ const SearchScreen = () => {
   const searchArticle = () => {
     dispatch(resetGuardian());
     dispatch(resetNews());
+    dispatch(resetNewYork());
     const params = {
       query: search,
       date: date,
@@ -34,8 +38,8 @@ const SearchScreen = () => {
       case 'News API':
         dispatch(newsThunk(params))
         break;
-
-      default:
+      case 'New York News':
+        dispatch(newYorkThunk(params))
         break;
     }
   }
@@ -52,6 +56,7 @@ const SearchScreen = () => {
       </div>
       <GuardianNews />
       <NewsApi />
+      <NewYorkNews />
     </div>
   )
 }

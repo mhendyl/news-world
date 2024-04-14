@@ -22,11 +22,15 @@ export interface ArticleNewsResulstsResponse {
 export interface NewsInitialInterface {
   isLoading: boolean;
   article: ArticleNewsResulstsResponse | null;
+  feed: ArticleNewsResulstsResponse | null;
+  getAuthor: ArticleNewsResulstsResponse | null;
   error: string;
 }
 
 export const NewsInitialState: NewsInitialInterface = {
   isLoading: false,
   article: null,
+  feed: null,
+  getAuthor: null,
   error: '',
 };

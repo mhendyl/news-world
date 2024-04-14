@@ -31,11 +31,13 @@ export interface ArticleResulstsResponse {
 export interface GuardianInitialInterface {
   isLoading: boolean;
   article: ArticleResulstsResponse | null;
+  details: ArticleResulstsResponse | null;
   error: string;
 }
 
 export const GuardianInitialState: GuardianInitialInterface = {
   isLoading: false,
   article: null,
+  details: null,
   error: '',
 };

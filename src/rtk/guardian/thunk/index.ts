@@ -26,3 +26,24 @@ export const guardianThunk = createAsyncThunk(
     }
   },
 );
+
+export const guardianNoDateThunk = createAsyncThunk(
+  'guardian/details',
+  async ({ query = null, date }: GuardianThunkParams) => {
+    if (date === null) {
+      throw new Error("Date is required.");
+    }
+    const URL = `https://content.guardianapis.com/search?q=${query}&api-key=42f26645-8d2f-46c1-9386-e157f529cf4f`;
+    
+    try {
+      const response = await axios.get(URL, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+);

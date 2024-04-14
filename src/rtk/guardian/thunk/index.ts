@@ -6,6 +6,10 @@ interface GuardianThunkParams {
   date: string | null;
 }
 
+interface GuardianNoDateThunkParams {
+  query: string | null;
+}
+
 export const guardianThunk = createAsyncThunk(
   'guardian/search',
   async ({ query = null, date }: GuardianThunkParams) => {
@@ -28,12 +32,10 @@ export const guardianThunk = createAsyncThunk(
 );
 
 export const guardianNoDateThunk = createAsyncThunk(
-  'guardian/details',
-  async ({ query = null, date }: GuardianThunkParams) => {
-    if (date === null) {
-      throw new Error("Date is required.");
-    }
-    const URL = `https://content.guardianapis.com/search?q=${query}&api-key=42f26645-8d2f-46c1-9386-e157f529cf4f`;
+  'guardian/feed',
+  async () => {
+    
+    const URL = `https://content.guardianapis.com/search?q=null&api-key=42f26645-8d2f-46c1-9386-e157f529cf4f`;
     
     try {
       const response = await axios.get(URL, {

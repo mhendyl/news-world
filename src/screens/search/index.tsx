@@ -10,7 +10,7 @@ import { guardianThunk } from "../../rtk/guardian/thunk";
 import { AppDispatch } from "../../rtk/store";
 import GuardianNews from "../../components/news/guardian";
 import { newsThunk } from "../../rtk/news/thunk";
-import NewsApi from "../../components/news/newsApi";
+import NewsCard from "../../components/news/newsApi";
 import { resetGuardian } from "../../rtk/guardian";
 import { resetNews } from "../../rtk/news";
 import { newYorkThunk } from "../../rtk/newyork/thunk";
@@ -55,7 +55,7 @@ const SearchScreen = () => {
         <button className="px-4 py-2 border border-black rounded-md" onClick={searchArticle}>Search</button>
       </div>
       <GuardianNews />
-      <NewsApi />
+      <NewsCard />
       <NewYorkNews />
     </div>
   )

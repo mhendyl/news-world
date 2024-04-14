@@ -40,14 +40,14 @@ export const NewsSlice = createSlice({
       })
       .addCase(newsGetFeedThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.feed = action.payload;
+        state.article = action.payload;
       })
       .addCase(newsGetFeedThunk.pending, state => {
         state.isLoading = true;
       })
       .addCase(newsGetFeedThunk.rejected, state => {
         state.isLoading = false;
-        state.feed = null;
+        state.article = null;
         // state.error = state.error;
       });
   },

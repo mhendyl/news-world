@@ -18,15 +18,15 @@ const SelectOption = ({
   const renderOption = () => {
     switch (type) {
       case 'newsAPIAuthor':
-        return option.map((value: any, index: number) => value.author && (<option key={index} value={value?.author}>{value?.author}</option>))
+        return option.map((value: any, index: number) => value.author && (<option className="max-w-xs text-ellipsis" key={index} value={value?.author}>{value?.author}</option>))
       default:
-        return option.map((value: any, index: number) => <option key={index} value={value?.value}>{value?.value}</option>)
+        return option.map((value: any, index: number) => <option className="max-w-xs text-ellipsis" key={index} value={value?.value}>{value?.value}</option>)
     }
   }
   return (
     <div className={className}>
       <p>{label}</p>
-      <select value={selected} className="border border-black px-2 rounded-sm" onChange={(e) => { onSelect(e.target.value) }}>
+      <select value={selected} className="border border-black px-2 rounded-sm max-w-xs" onChange={(e) => { onSelect(e.target.value) }}>
         {option && (renderOption())}
       </select>
     </div>

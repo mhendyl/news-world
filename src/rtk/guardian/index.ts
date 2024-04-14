@@ -29,14 +29,14 @@ export const GuardianSlice = createSlice({
       })
       .addCase(guardianNoDateThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.details = action.payload;
+        state.article = action.payload;
       })
       .addCase(guardianNoDateThunk.pending, state => {
         state.isLoading = true;
       })
       .addCase(guardianNoDateThunk.rejected, state => {
         state.isLoading = false;
-        state.details = null;
+        state.article = null;
         // state.error = state.error;
       });
   },

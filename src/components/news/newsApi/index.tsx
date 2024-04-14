@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { AppRootState } from "../../../rtk/store";
 import { convertDate } from "../../../utils";
 
-const NewsApi = () => {
+const NewsCard = () => {
   const { article, isLoading } = useSelector(
     (state: AppRootState) => state.newsReducer,
   );
-
+  
   const dataResults = article?.articles;
 
   const renderNews = () => {
@@ -38,4 +38,4 @@ const NewsApi = () => {
   )
 };
 
-export default NewsApi;
+export default NewsCard;

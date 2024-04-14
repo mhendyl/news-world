@@ -6,7 +6,7 @@ const GuardianNews = () => {
   const { article, isLoading } = useSelector(
     (state: AppRootState) => state.guardianReducer,
   );
-
+  
   const dataResults = article?.response?.results;
 
   const renderNews = () => {

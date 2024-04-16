@@ -1,3 +1,15 @@
+# Docker 
+
+Follow the instuction at https://docs.docker.com/desktop/wsl/ (since I'm using Windows)
+
+After that do build the image trough this command 
+docker build -t news .
+
+after that you will see the image in the docker image and setup the port as you want (I do at 4000)
+then you can run the apps
+
+first download
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

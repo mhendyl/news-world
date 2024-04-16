@@ -17,6 +17,18 @@ const NewsFeed = () => {
     (state: AppRootState) => state.feedReducer,
   );
 
+  const newsReducer = useSelector(
+    (state: AppRootState) => state.newsReducer,
+  );
+
+  const guardianReducer = useSelector(
+    (state: AppRootState) => state.guardianReducer,
+  );
+
+  const newYorkReducer = useSelector(
+    (state: AppRootState) => state.newYorkReducer,
+  );
+
   useEffect(() => {
     dispatch(resetGuardian());
     dispatch(resetNews());
@@ -43,7 +55,12 @@ const NewsFeed = () => {
   
   return (
     <div className="px-10">
-      <p>Please set your preference in settings</p>
+      {
+      (!guardianReducer?.article?.response?.results) && 
+      (!newsReducer?.article?.articles) && 
+      (!newYorkReducer?.article?.response?.docs) && (
+        <p>Set your preference in settings tab</p>
+      )}
       <NewsCard />
       <GuardianNews />
       <NewYorkNews />

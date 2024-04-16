@@ -32,12 +32,10 @@ const SettingScreen = () => {
   }, [categoryData, source])
 
   useEffect(() => {
-    console.log('>>dataAuthorNewsAPI', dataAuthorNewsAPI);
-    
     if (dataAuthorNewsAPI && dataAuthorNewsAPI.length > 0) setAuthor(dataAuthorNewsAPI[0].author)
   }, [dataAuthorNewsAPI])
-  
-  
+
+
 
   useEffect(() => {
     if (feed.author || feed.category || feed.source) {
@@ -47,17 +45,14 @@ const SettingScreen = () => {
     }
   }, [feed.author, feed.category, feed.source])
 
-  
-  
-  
+
+
+
 
   const onChangeCategory = async (value: string) => {
     setCategory(value);
     if (source === 'News API') {
-      dispatch(newsGetAuthorThunk({category: value}))
-      // console.log('>>> dataAuthorNewsAPI', dataAuthorNewsAPI);
-      
-      // if (dataAuthorNewsAPI && dataAuthorNewsAPI.length > 0) setAuthor(dataAuthorNewsAPI[0].author)
+      dispatch(newsGetAuthorThunk({ category: value }))
     }
   }
 
@@ -69,18 +64,21 @@ const SettingScreen = () => {
     }
     dispatch(setFeedOption(param))
   }
-  
+
   return (
     <div className='px-10 flex flex-wrap'>
-      <SelectOption selected={source} className="w-3/12" label='Source' onSelect={(val) => { setSource(val); }} option={dataSource} />
+      <SelectOption selected={source} className="w-full md:w-3/12" label='Source' onSelect={(val) => { setSource(val); }} option={dataSource} />
       {source !== 'Guardian' && (
-        <SelectOption selected={category} className="w-3/12" label='Category' onSelect={(val) => { onChangeCategory(val) }} option={categoryData} />
+        <SelectOption selected={category} className="w-full md:w-3/12" label='Category' onSelect={(val) => { onChangeCategory(val) }} option={categoryData} />
       )}
       {source === 'News API' && (
-        <SelectOption selected={author} className="w-3/12" label='Author' type="newsAPIAuthor" onSelect={(val) => { setAuthor(val); }} option={dataAuthorNewsAPI} />
+        <SelectOption selected={author} className="w-full md:w-3/12" label='Author' type="newsAPIAuthor" onSelect={(val) => { setAuthor(val); }} option={dataAuthorNewsAPI} />
       )}
       {/* <SelectOption label='Author' onSelect={(val) => { setAuthor(val); }} option={dataAuthor} /> */}
-      <button className="px-4 py-2 border border-black rounded-md" onClick={saveSettingsFeed}>Save</button>
+      <div className="w-full md:w-2/12 m-auto mt-2 md:mb-0 md:mt-0">
+        <button className="px-4 border border-black flex m-auto rounded-md py-3" onClick={saveSettingsFeed}>Save</button>
+      </div>
+
     </div>
   )
 }

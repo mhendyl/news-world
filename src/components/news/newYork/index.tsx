@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { AppRootState } from "../../../rtk/store";
 import { convertDate } from "../../../utils";
+import EmptyNews from "../../emptyNews";
 
 const NewYorkNews = () => {
   const { article, isLoading } = useSelector(
@@ -24,12 +25,18 @@ const NewYorkNews = () => {
           </div>
         );
       });
+    } else if (dataResults && dataResults.length === 0) {
+      return (
+        <EmptyNews />
+      )
     }
   };
   return (
     <div className="px-10 mt-5 ">
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="w-full">
+          <p className="text-center text-lg font-bold">Loading...</p>
+        </div>
       ) : (
         <div className="flex flex-wrap">
           {renderNews()}

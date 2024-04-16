@@ -1,12 +1,14 @@
 type SearchProps = {
-  onChange: (value: string) => void
+  onChange: (value: string) => void;
+  className?: string;
 }
 
 const Search = ({
-  onChange
+  onChange,
+  className
 } : SearchProps) => {
   return (
-    <input className="border border-b rounded-md p-3" placeholder="Search" onChange={(e) => {onChange(e.target.value)}} />
+    <input className={`border border-black rounded-md p-3 ${className}`} placeholder="What you looking for?" onChange={(e) => {onChange(e.target.value)}} />
   )
 }
 

@@ -26,7 +26,7 @@ const SelectOption = ({
   return (
     <div className={className}>
       <p>{label}</p>
-      <select value={selected} className="border border-black px-2 rounded-sm max-w-xs" onChange={(e) => { onSelect(e.target.value) }}>
+      <select value={selected} className="border border-black px-2 rounded-sm max-w-xs w-full" onChange={(e) => { onSelect(e.target.value) }}>
         {option && (renderOption())}
       </select>
     </div>

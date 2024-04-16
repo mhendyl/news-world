@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectDate from "../../components/datepicker";
 import Search from "../../components/search";
 import SelectOption from "../../components/selectOption";
@@ -23,6 +23,12 @@ const SearchScreen = () => {
   const [search, setSearch] = useState<string>('');
   const [date, setDate] = useState<string | null>(convertDate(new Date()));
 
+  useEffect(() => {
+    dispatch(resetGuardian());
+    dispatch(resetNews());
+    dispatch(resetNewYork());
+  }, [])
+  
   const searchArticle = () => {
     dispatch(resetGuardian());
     dispatch(resetNews());
@@ -45,14 +51,18 @@ const SearchScreen = () => {
   }
   return (
     <div>
-      <div className='px-10 columns-5'>
-        <Search onChange={setSearch} />
-        <SelectDate label='From Date' onChangeDate={(date) => { setDate(convertDate(date)) }} />
-        <SelectOption label='Source' onSelect={(val) => { setSource(val); }} option={dataSource} />
+      <div className='px-10 flex flex-wrap'>
+        <div className="w-full md:w-2/12 px-3">
+          <Search className="my-auto w-full" onChange={setSearch} />
+        </div>
+        <SelectDate className="m-auto" label='From Date' onChangeDate={(date) => { setDate(convertDate(date)) }} />
+        <SelectOption className="w-full md:w-2/12 px-3" label='Source' onSelect={(val) => { setSource(val); }} option={dataSource} />
         {source !== 'Guardian' && (
-          <SelectOption label='Category' onSelect={(val) => { console.log(val) }} option={dataCategory} />
+          <SelectOption className="w-full md:w-2/12 px-3" label='Category' onSelect={(val) => { console.log(val) }} option={dataCategory} />
         )}
-        <button className="px-4 py-2 border border-black rounded-md" onClick={searchArticle}>Search</button>
+        <div className="w-full md:w-2/12 m-auto mt-2 md:mb-0 md:mt-0">
+          <button className="px-4 border border-black flex m-auto rounded-md py-3" onClick={searchArticle}>Search</button>
+        </div>
       </div>
       <GuardianNews />
       <NewsCard />
